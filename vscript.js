@@ -1,10 +1,13 @@
+let body = document.querySelector("body")
+let errormsg = document.createElement("p")
+body.appendChild(errormsg)
 check = function() {
-    let v = document.querySelector("#videosearch")
-    let fs = require('fs');
-    let files = fs.readdirSync('/videos');
-    if (v.value in files) {
-        console.log("ok")
+    if ([""].includes(document.querySelector("#videosearch").value)) {
+        errormsg.innerHTML = ""
+        let video = document.createElement("video")
+        video.src = `videos/${document.querySelector("#videosearch").value}.mp4`
+        document.appendChild(video)
     } else {
-        console.log("no")
+        errormsg.innerHTML = "Invalid Video"
     }
 }
