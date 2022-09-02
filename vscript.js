@@ -1,13 +1,21 @@
 let body = document.querySelector("body")
 let errormsg = document.createElement("p")
 body.appendChild(errormsg)
-check = function() {
-    if (["Laser Arena Attempts"].includes(document.querySelector("#videosearch").value)) {
+
+check = function(vdeo) {
+    if (["Laser Arena Attempts"].includes(vdeo)) {
         errormsg.innerHTML = ""
         let video = document.createElement("video")
-        video.src = `C:/Users/filze/Desktop/Python/Videos/${document.querySelector("#videosearch").value}.mp4`
+        video.src = `C:/Users/filze/Desktop/Python/Videos/${vdeo}.mp4`
+        video.controls = true
         body.appendChild(video)
     } else {
-        errormsg.innerHTML = "Invalid Video"
+        if (vdeo != "") {
+            errormsg.innerHTML = "Invalid Video"
+        }
     }
 }
+document.querySelector("#btn").addEventListener("click", check(document.querySelector("#videosearch").value))
+const queryString = window.location.search
+const urlParams = new URLSearchParams(queryString)
+check(urlParams.get('video'))
